@@ -35,7 +35,7 @@ UserMessageManager::~UserMessageManager() {}
 void UserMessageManager::OnAllInitialized()
 {
     m_hooks.Add(
-        static_cast<void (IGameEventSystem::*)(CSplitScreenSlot, bool, int, const uint64*, INetworkMessageInternal*, const CNetMessage*,
+        static_cast<void (IGameEventSystem::*)(CSplitScreenSlot, bool, int, const uint64*, NetMessageInfo_t*, const CNetMessage*,
                                                unsigned long, NetChannelBufType_t)>(&IGameEventSystem::PostEventAbstract),
         globals::gameEventSystem, this, &UserMessageManager::Hook_PostEvent, nullptr);
 }
@@ -144,7 +144,7 @@ KHook::Return<void> UserMessageManager::Hook_PostEvent(IGameEventSystem* hookThi
                                                        bool bLocalOnly,
                                                        int nClientCount,
                                                        const uint64* clients,
-                                                       INetworkMessageInternal* pEvent,
+                                                       NetMessageInfo_t* pEvent,
                                                        const CNetMessage* pData,
                                                        unsigned long nSize,
                                                        NetChannelBufType_t bufType)

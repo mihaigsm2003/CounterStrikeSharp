@@ -210,8 +210,8 @@ void ReplicateConVar(ScriptContext& script_context)
     auto name = script_context.GetArgument<const char*>(1);
     auto value = script_context.GetArgument<const char*>(2);
 
-    INetworkMessageInternal* pNetMsg = globals::networkMessages->FindNetworkMessagePartial("SetConVar");
-    auto msg = pNetMsg->AllocateMessage()->ToPB<CNETMsg_SetConVar>();
+    NetMessageInfo_t* pNetMsg = globals::networkMessages->FindNetworkMessagePartial("SetConVar");
+    auto msg = pNetMsg->m_pfnAllocate()->ToPB<CNETMsg_SetConVar>();
 
     CMsg_CVars_CVar* cvarMsg = msg->mutable_convars()->add_cvars();
     cvarMsg->set_name(name);

@@ -20,9 +20,9 @@
 using namespace google;
 
 namespace counterstrikesharp {
-int UserMessage::GetMessageID() { return msgSerializable->GetNetMessageInfo()->m_MessageId; }
+int UserMessage::GetMessageID() { return msgSerializable->m_MessageId; }
 
-std::string UserMessage::GetMessageName() { return msgSerializable->GetUnscopedName(); }
+std::string UserMessage::GetMessageName() { return msgSerializable->m_szName.Get(); }
 
 bool UserMessage::HasField(std::string fieldName)
 {

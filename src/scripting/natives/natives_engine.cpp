@@ -191,8 +191,8 @@ void ClientPrint(ScriptContext& scriptContext)
     auto hudDestination = scriptContext.GetArgument<int>(1);
     auto message = scriptContext.GetArgument<const char*>(2);
 
-    INetworkMessageInternal* pNetMsg = globals::networkMessages->FindNetworkMessagePartial("TextMsg");
-    auto data = pNetMsg->AllocateMessage()->ToPB<CUserMessageTextMsg>();
+    NetMessageInfo_t* pNetMsg = globals::networkMessages->FindNetworkMessagePartial("TextMsg");
+    auto data = pNetMsg->m_pfnAllocate()->ToPB<CUserMessageTextMsg>();
 
     data->set_dest(hudDestination);
     data->add_param(message);
