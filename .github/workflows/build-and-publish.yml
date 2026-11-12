@@ -11,7 +11,7 @@ on:
   push:
     paths-ignore:
       - "docfx/**"
-    branches: ["main"]
+    branches: ["**"]
     tags:
       - "v*"
   pull_request:
